@@ -61,12 +61,15 @@ submit are secure and protected and comply with applicable data protection regul
 
 
 
-# For funcitional requirementam and Diagrams follw this links: https://github.com/arnob32/SIS-2026/wiki
+# For funcitional requirementam and Diagrams follow this links: https://github.com/arnob32/SIS-2026/wiki
 
 # Team Descriptions:  backDoor!
   1.Raju Naidu-7213668
+  
   2.Junaid Ahmed-
+  
   3.Helmi -
+  
   4.Nawshad Fahim-
  
 
