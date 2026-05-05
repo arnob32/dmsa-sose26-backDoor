@@ -42,6 +42,25 @@ Security and privacy: The platform must ensure that users' data and the reports 
 submit are secure and protected and comply with applicable data protection regulations.
 
 
+
+
+##  the platform plan to implemented as a **microservice architecture** using **Java** and the **Spring framework**. The following patterns and technologies are used:
+
+- **Microservice architecture** — the system is decomposed into independently deployable services
+- **API Gateway pattern** — a single entry point routes requests to downstream services
+- **Domain-Driven Design (DDD)** — bounded contexts define service boundaries
+- **RESTful APIs** — synchronous HTTP communication between services and clients
+- **Spring Boot** — application framework for each microservice
+- **Spring Security + JWT** — authentication and authorisation
+- **Spring Data JPA + PostgreSQL** — persistent storage per service
+- **Docker + Docker Compose** — containerisation and local orchestration
+- **Spring Cloud (Eureka, Gateway)** — service discovery and API gateway
+
+
+
+
+
+
 # For funcitional requirementam and Diagrams follw this links: https://github.com/arnob32/SIS-2026/wiki
 
 # Team Descriptions:  backDoor!
@@ -52,4 +71,4 @@ submit are secure and protected and comply with applicable data protection regul
 
 
  # Dortmund University Of Applied Science
-   CVpuse:  Software Intensive Solutions,2026
+   Course :  Software Intensive Solutions,2026
