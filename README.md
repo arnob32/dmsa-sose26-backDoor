@@ -64,11 +64,11 @@ submit are secure and protected and comply with applicable data protection regul
 # For funcitional requirementam and Diagrams follw this links: https://github.com/arnob32/SIS-2026/wiki
 
 # Team Descriptions:  backDoor!
- # Raju Naidu-7213668
- # Junaid Ahmed-
- # Helmi -
- # Nawshad Fahim-
-
+  1.Raju Naidu-7213668
+  2.Junaid Ahmed-
+  3.Helmi -
+  4.Nawshad Fahim-
+ 
 
  # Dortmund University Of Applied Science
    Course :  Software Intensive Solutions,2026
