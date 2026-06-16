@@ -64,13 +64,14 @@ submit are secure and protected and comply with applicable data protection regul
 # For funcitional requirementam and Diagrams follow this links: https://github.com/arnob32/SIS-2026/wiki
 
 # Team Descriptions:  backDoor!
-  1.Raju Naidu-7213668
+
+  1.Raju Naidu - 7213668
   
-  2.Junaid Ahmed-7222074
+  2.Junaid Ahmed - 7222074
   
   3.Helmi Zaki Fadhali - 7225540
   
-  4.Nawshad Fahim-
+  4.Nawshad Fahim - 7216629
  
 
  # Dortmund University Of Applied Science
