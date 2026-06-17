@@ -1,4 +1,3 @@
-# SIS-2026
 
 # Scenario 3: Citizen-based Road Condition Monitoring
 
