@@ -4,6 +4,7 @@ import com.example.Dispatch_Service.adapter.UserServiceClient;
 import com.example.Dispatch_Service.model.*;
 import com.example.Dispatch_Service.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,16 @@ public class DispatchController {
 
     @Autowired
     private UserServiceClient userServiceClient;
+
+    /** Externalized property served by the Spring Cloud Config Server (Task 2). */
+    @Value("${dispatch.info-message:(config server not connected)}")
+    private String infoMessage;
+
+    /** Shows whether centralized configuration was loaded from the Config Server. */
+    @GetMapping("/info")
+    public Map<String, String> info() {
+        return Map.of("service", "dispatch-service", "configMessage", infoMessage);
+    }
 
     // ----- Reports -----
 
