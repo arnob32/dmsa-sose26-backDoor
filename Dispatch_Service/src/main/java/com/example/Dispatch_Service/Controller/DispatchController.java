@@ -1,5 +1,6 @@
 package com.example.Dispatch_Service.Controller;
 
+import com.example.Dispatch_Service.adapter.UserServiceClient;
 import com.example.Dispatch_Service.model.*;
 import com.example.Dispatch_Service.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class DispatchController {
 
     @Autowired
     private DispatchService dispatchService;
+
+    @Autowired
+    private UserServiceClient userServiceClient;
 
     // ----- Reports -----
 
@@ -104,16 +108,13 @@ public class DispatchController {
     // ----- Mocked upstream dependency (User_Service) -----
 
     /**
-     * Mocked technician list. In Task 2 this is replaced by a real call to
-     * User_Service: GET /api/users/role/TECHNICIAN (guarded by a Resilience4j
-     * circuit breaker). Mocked here so the UI can demo assignment.
+     * Technician list fetched from User_Service (GET /api/users/role/TECHNICIAN) via
+     * Eureka discovery, guarded by a Resilience4j circuit breaker. If User_Service is
+     * down or the circuit is open, a fallback list is returned instead.
      */
     @GetMapping("/technicians")
-    public List<Map<String, String>> technicians() {
-        return List.of(
-                Map.of("userId", "t-001", "fullName", "Tom Becker", "specialization", "Potholes", "district", "Nord"),
-                Map.of("userId", "t-002", "fullName", "Lena Vogt", "specialization", "Traffic Lights", "district", "Süd"),
-                Map.of("userId", "t-003", "fullName", "Omar Haddad", "specialization", "Signage", "district", "West"));
+    public List<Map<String, Object>> technicians() {
+        return userServiceClient.getTechnicians();
     }
 
     // ----- Error handling -----
