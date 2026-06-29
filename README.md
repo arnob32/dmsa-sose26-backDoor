@@ -56,6 +56,57 @@ submit are secure and protected and comply with applicable data protection regul
 - **Spring Cloud (Eureka, Gateway)** — service discovery and API gateway
 
 
+# Services & Ports
+
+| Module | Bounded Context | Port | Status |
+|---|---|---|---|
+| `config-server` | Centralized configuration (Spring Cloud Config) | 8888 | Implemented |
+| `eureka-server` | Service discovery (Eureka) | 8761 | Implemented |
+| `User_Service` | Identity & Access Management | 8082 | Implemented |
+| `Dispatch_Service` | Maintenance Dispatch | 8081 | Implemented |
+| `IssueReport_Service` | Issue Reporting | — | Scaffold |
+| `Notification_Service` | Notification | — | Scaffold |
+| `FeedBack_Service` | FeedBack | — | Scaffold |
+| `Media_Service` | Media / Photo Management | — | Scaffold |
+
+# Running the System
+
+Start each module with `mvn spring-boot:run` in this order (infrastructure first):
+
+1. **config-server** (`config-server/`) → http://localhost:8888
+2. **eureka-server** (`eureka-server/eureka-server/`) → http://localhost:8761
+3. **business services** (e.g. `Dispatch_Service/`, `User_Service/`)
+
+Services can also run standalone: the config import is `optional:`, and the Eureka
+client can be turned off via `eureka.client.enabled=false`.
+
+# Dispatch_Service (Maintenance Dispatch)
+
+Implements the Maintenance Dispatch context: receives reports handed over from Issue
+Reporting, then reviews, prioritises, assigns work, tracks status history and resolves
+or rejects them. Built with Spring Boot + Spring MVC + REST and an H2 database.
+
+- **DDD building blocks:** `Report` (aggregate root), `WorkAssignment` & `StatusHistory`
+  (entities), `ReportStatus` / `Priority` / `AssignmentStatus` (value objects),
+  `DispatchService` (domain service), three repositories, `RestClient` (publisher).
+- **Integration (Assignment 5 Task 2):** registers with **Eureka**; calls `user-service`
+  for technicians through a **Resilience4j circuit breaker** (with fallback); pulls
+  centralized config from the **config-server**.
+- **Demo UI:** http://localhost:8081/
+
+Key REST endpoints (base `/api`):
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/reports`, `/reports/open`, `/reports/{id}` | List / read reports |
+| POST | `/reports` | Ingest a report (mock hand-over from Issue Reporting) |
+| POST | `/reports/{id}/priority` | Set priority |
+| POST | `/reports/{id}/assign` | Assign work (→ IN_PROGRESS) |
+| POST | `/reports/{id}/status` | Change status |
+| POST | `/reports/{id}/resolve`, `/reports/{id}/reject` | Close report |
+| GET | `/reports/{id}/assignments`, `/reports/{id}/history` | Work assignments / status audit trail |
+| GET | `/technicians` | Technician list from user-service (circuit-breaker guarded) |
+| GET | `/info` | Shows config loaded from the config-server |
 
 
 
