@@ -6,10 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Seeds a few example reports on startup so the demo UI has data to work with.
- * Simulates reports handed over from the Issue Reporting context.
- */
+
 @Configuration
 public class DataSeeder {
 

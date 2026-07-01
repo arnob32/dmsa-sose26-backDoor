@@ -1,7 +1,5 @@
 package com.example.User_Service.config;
 
-import com.example.User_Service.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-
 public class SecurityConfig {
 
     @Bean
@@ -24,7 +21,21 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
+                .requestMatchers("/", "/login", "/register", "/register/save", "/style.css", "/error").permitAll()
+                .requestMatchers("/api/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")          // where login.html POSTs
+                .defaultSuccessUrl("/dashboard", true)  // your role router
+                .failureUrl("/login?error")
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
             );
         return http.build();
     }
