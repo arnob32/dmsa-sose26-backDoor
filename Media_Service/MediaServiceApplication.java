@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MediaServiceApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(MediaServiceApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(MediaServiceApplication.class, args);
+    }
 }
